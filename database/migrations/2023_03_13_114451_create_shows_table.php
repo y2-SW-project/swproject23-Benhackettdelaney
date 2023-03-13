@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('shows', function (Blueprint $table) {
             $table->id();
+            $table->integer('age_group');
+            $table->string('title');
+            $table->string('description');
+            $table->integer('duration');
+            $table->integer('rating');
+            $table->date('date');
             $table->timestamps();
         });
     }

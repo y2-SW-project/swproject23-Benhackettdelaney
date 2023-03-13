@@ -17,7 +17,12 @@ class MovieFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'age_group' => $this->faker->numberBetween(12, 18),
+            'title' => $this->faker->word,
+            'description' => $this->faker->word,
+                'duration' =>$this->faker->numberBetween(0, 100),
+                'rating' => $this->faker->numberBetween(0, 5),
+                'date' => $this->faker->date(),
         ];
     }
 }
