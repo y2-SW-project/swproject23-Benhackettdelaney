@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
-    protected $fillable = ['age_group', 'title','description', 'duration', 'rating', 'date',  'updated_at', 'created_at'];
+    protected $fillable = ['age_group', 'title','description', 'duration', 'rating', 'date','new_releases',  'updated_at', 'created_at'];
     
     public function genres()
     {
