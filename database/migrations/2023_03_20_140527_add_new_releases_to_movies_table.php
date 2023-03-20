@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->boolean('new_releases')->default(false);
+            $table->boolean('new_releases');
         });
     }
 

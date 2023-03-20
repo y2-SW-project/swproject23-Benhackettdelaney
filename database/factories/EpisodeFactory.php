@@ -23,6 +23,7 @@ class EpisodeFactory extends Factory
                 'rating' => $this->faker->numberBetween(0, 5),
                 'number_of_episodes' => $this->faker->numberBetween(0, 22),
                 'date' => $this->faker->date(),
+                'show_id' => 1
         ];
     }
 }
