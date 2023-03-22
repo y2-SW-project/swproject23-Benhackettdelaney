@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Movie\shows;
+use App\Models\Movie;
 use App\Models\newreleases;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class movieandshowsController extends Controller
+class newreleasesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,7 @@ class movieandshowsController extends Controller
     {
        
 
-        $newreleases = Newreleases::all();
+        $newreleases = newreleases::all();
         return view('movies.create')->with('newreleases',$newreleases);
     }
 
@@ -51,12 +51,13 @@ class movieandshowsController extends Controller
        
 
         $request->validate([
-            
+     
+           
         ]);
 
        
         Movie::create([
-         
+
         ]);
 
         return to_route('movies.index');
@@ -111,16 +112,16 @@ class movieandshowsController extends Controller
 
          //   //This function is quite like the store() function.
           $request->validate([
-         
+            
         ]);
 
        
         
         $Movie->update([
-      
+           
         ]);
 
-        return to_route('admin.Movies.show', $movies)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
     }
 
     /**
@@ -134,6 +135,6 @@ class movieandshowsController extends Controller
    
         $movies->delete();
 
-        return to_route('Movies.index')->with('success', 'Movie deleted successfully');
+        return to_route('movies.index')->with('success', 'Movie deleted successfully');
     }
 }

@@ -36,7 +36,7 @@ class newreleasesController extends Controller
     {
        
 
-        $newreleases = Newreleases::all();
+        $newreleases = newreleases::all();
         return view('movies.create')->with('newreleases',$newreleases);
     }
 
@@ -143,7 +143,7 @@ class newreleasesController extends Controller
             'date' =>$request->date
         ]);
 
-        return to_route('admin.Movies.show', $movies)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
     }
 
     /**
@@ -157,6 +157,6 @@ class newreleasesController extends Controller
    
         $movies->delete();
 
-        return to_route('Movies.index')->with('success', 'Movie deleted successfully');
+        return to_route('movies.index')->with('success', 'Movie deleted successfully');
     }
 }
