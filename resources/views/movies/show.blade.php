@@ -1,24 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('View Movie Details') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
+
+@section('content')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!--alert-success is a component which I created using php artisan make:component alert-success
-            have a look at the code in views/components/alert-success.blade.php -->
-            <x-alert-success>
-                {{ session('success') }}
-            </x-alert-success>
+     
 
             <div class="flex">
 
-                <!-- when EDIT BUTTON is clicked, route to admin.books.edit -->
-                <a href="{{ route('movies.edit', $Movie) }}" class="btn-link ml-auto">Edit</a>
-
-                <!-- delete button is wrapped in a form, with the delete method. -->
+               
                 <form action="{{ route('movies.destroy', $Movie) }}" method="post">
                     @method('delete')
                     @csrf
@@ -60,4 +50,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
