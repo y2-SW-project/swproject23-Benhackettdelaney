@@ -21,7 +21,7 @@ class MoviesAndShowsController extends Controller
      
 
         $movies = Movie::all();
-       $movies = Movie::paginate(10);   
+       $movies = Movie::paginate(10);
        $movies = Movie::with('newreleases')->get();
 
         return view('movies.index')->with('movies', $movies);
@@ -34,10 +34,7 @@ class MoviesAndShowsController extends Controller
      */
     public function create()
     {
-       
-
-        $newreleases = Movie::all();
-        return view('movies.create')->with('newreleases',$newreleases);
+        return view('movies.create');
     }
 
     /**
@@ -155,7 +152,7 @@ class MoviesAndShowsController extends Controller
     public function destroy(Movie $movie)
     {
    
-        $movie->delete();
+        $movies->delete();
 
         return to_route('movies.index')->with('success', 'Movie deleted successfully');
     }

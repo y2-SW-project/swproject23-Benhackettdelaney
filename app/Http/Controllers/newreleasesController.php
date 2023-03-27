@@ -19,11 +19,11 @@ class newreleasesController extends Controller
     public function index()
     {
      
-        $movie = Movie::all();
+        $movies = Movie::all();
     //    $movies = Movie::paginate(10);
     //    $movies = Movie::with('newreleases')->get();
 
-        return view('newreleases.index')->with('movies', $movie);
+        return view('newreleases.index')->with('movies', $movies);
     }
 
     /**
@@ -33,10 +33,7 @@ class newreleasesController extends Controller
      */
     public function create()
     {
-       
-
-        $newreleases = newreleases::all();
-        return view('movies.create')->with('newreleases',$newreleases);
+        return view('newreleases.create');
     }
 
     /**
@@ -96,7 +93,7 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit(Movie $movies)
     {
       
         $newreleases = Movie::all();
@@ -113,7 +110,7 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, Movie $Movie)
     {
      
 
@@ -129,7 +126,7 @@ class newreleasesController extends Controller
 
        
         
-        $movie->update([
+        $Movie->update([
             'age_group' => $request->age_group,
             'title' => $request->title,
             'description' => $request->description,
@@ -138,7 +135,7 @@ class newreleasesController extends Controller
             'date' =>$request->date
         ]);
 
-        return to_route('movies.show', $movie)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
     }
 
     /**
@@ -149,9 +146,8 @@ class newreleasesController extends Controller
      */
     public function destroy(Movie $movie)
     {
-   
         $movie->delete();
 
-        return to_route('movies.index')->with('success', 'Movie deleted successfully');
+        return to_route('newrelease.index')->with('success', 'Movie deleted successfully');
     }
 }

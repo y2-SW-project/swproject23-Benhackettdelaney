@@ -8,7 +8,7 @@
 
             <div class="flex">
 
-            <form action="{{ route('movies.destroy', $Movie) }}" method="post">
+            <form action="{{ route('newreleases.destroy', $Movie) }}" method="post">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete?')">Delete </button>
