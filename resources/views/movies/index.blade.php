@@ -29,7 +29,7 @@
             @empty
             <p>No Movies</p>
             @endforelse
-            <!-- This line of code simply adds the links for Pagination-->
+      
             {{-- {{$movies->links()}} --}}
         </div>
     </div>
