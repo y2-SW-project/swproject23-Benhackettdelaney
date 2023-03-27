@@ -19,8 +19,8 @@
                     </h2>
                     <p class="mt-2">
 
-                        <h3 class="font-bold text-1xl"> <strong> newreleases Title </strong>
-                        {{$Movie->newreleases->title}} </h3>
+                        <h3 class="font-bold text-1xl"> <strong> movie Title </strong>
+                        {{$Movie->movie->title}} </h3>
                         {{$Movie->price}}
 
                     </p>

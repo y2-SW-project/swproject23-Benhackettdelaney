@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
@@ -19,12 +19,11 @@ class newreleasesController extends Controller
     public function index()
     {
      
+        $movie = Movie::all();
+    //    $movies = Movie::paginate(10);
+    //    $movies = Movie::with('newreleases')->get();
 
-        $movies = Movie::all();
-       $movies = Movie::paginate(10);
-       $movies = Movie::with('newreleases')->get();
-
-        return view('movies.index')->with('movies', $movies);
+        return view('newreleases.index')->with('movies', $movie);
     }
 
     /**
@@ -81,15 +80,14 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movies)
+    public function show(Movie $movie)
     {
        
-
         if(!Auth::id()) {
            return abort(403);
          }
          
-        return view('movies.show')->with('Movie', $movies);
+        return view('newreleases.show')->with('Movie', $movie);
     }
 
     /**
@@ -98,16 +96,13 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movies)
+    public function edit(Movie $movie)
     {
       
-        $newreleases = newreleases::all();
+        $newreleases = Movie::all();
       
     
 
-        // Load the edit view which will display the edit form
-        // Pass in the current Movie so that it appears in the form.
-        // return view('admin.Movies.edit')->with('Movie', $Movie, 'distilleries', $distilleries);
         return view('movies.edit', compact('movies', 'newreleases'));
     }
 
@@ -118,7 +113,7 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $Movie)
+    public function update(Request $request, Movie $movie)
     {
      
 
@@ -134,7 +129,7 @@ class newreleasesController extends Controller
 
        
         
-        $Movie->update([
+        $movie->update([
             'age_group' => $request->age_group,
             'title' => $request->title,
             'description' => $request->description,
@@ -143,7 +138,7 @@ class newreleasesController extends Controller
             'date' =>$request->date
         ]);
 
-        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movie)->with('success','Movie updated successfully');
     }
 
     /**
@@ -152,10 +147,10 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movies)
+    public function destroy(Movie $movie)
     {
    
-        $movies->delete();
+        $movie->delete();
 
         return to_route('movies.index')->with('success', 'Movie deleted successfully');
     }

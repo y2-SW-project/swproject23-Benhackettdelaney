@@ -21,5 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/movies', App\Http\Controllers\MoviesAndShowsController::class)->names('movies');
+// Route::resource('/newreleases', App\Http\Controllers\newreleasesController::class)->names('newreleases');
+
+Route::get('/newreleases', [App\Http\Controllers\newreleasesController::class, 'index'])->name('newreleases.index');
+Route::get('/newreleases/{movie}', [App\Http\Controllers\newreleasesController::class, 'show'])->name('newreleases.show');
+
 
 

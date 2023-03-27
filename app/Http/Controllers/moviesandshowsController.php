@@ -21,7 +21,7 @@ class MoviesAndShowsController extends Controller
      
 
         $movies = Movie::all();
-       $movies = Movie::paginate(10);
+       $movies = Movie::paginate(10);   
        $movies = Movie::with('newreleases')->get();
 
         return view('movies.index')->with('movies', $movies);
@@ -36,7 +36,7 @@ class MoviesAndShowsController extends Controller
     {
        
 
-        $newreleases = newreleases::all();
+        $newreleases = Movie::all();
         return view('movies.create')->with('newreleases',$newreleases);
     }
 
@@ -81,7 +81,7 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movies)
+    public function show(Movie $movie)
     {
        
 
@@ -89,7 +89,7 @@ class MoviesAndShowsController extends Controller
            return abort(403);
          }
          
-        return view('movies.show')->with('Movie', $movies);
+        return view('movies.show')->with('Movie', $movie);
     }
 
     /**
@@ -101,7 +101,7 @@ class MoviesAndShowsController extends Controller
     public function edit(Movie $movies)
     {
       
-        $newreleases = newreleases::all();
+        $newreleases = Movie::all();
       
     
 
@@ -118,7 +118,7 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $Movie)
+    public function update(Request $request, Movie $movie)
     {
      
 
@@ -134,7 +134,7 @@ class MoviesAndShowsController extends Controller
 
        
         
-        $Movie->update([
+        $movie->update([
             'age_group' => $request->age_group,
             'title' => $request->title,
             'description' => $request->description,
@@ -143,7 +143,7 @@ class MoviesAndShowsController extends Controller
             'date' =>$request->date
         ]);
 
-        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movie)->with('success','Movie updated successfully');
     }
 
     /**
@@ -152,10 +152,10 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movies)
+    public function destroy(Movie $movie)
     {
    
-        $movies->delete();
+        $movie->delete();
 
         return to_route('movies.index')->with('success', 'Movie deleted successfully');
     }
