@@ -11,65 +11,58 @@
                 <form action="{{ route('movies.update', $Movie) }}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
-                    <x-text-input
+                    <input
                         type="text"
                         name="age_group"
                         field="age_group"
                         placeholder="age_group"
                         class="w-full"
                         autocomplete="off"
-                        :value="@old('age_group')"></x-text-input>
+                        :value="@old('age_group')"></input>
 
-                    <x-text-input
+                    <input
                         type="text"
                         name="title"
                         field="title"
                         placeholder="title..."
                         class="w-full mt-6"
-                        :value="@old('title')"></x-text-input>
+                        :value="@old('title')"></input>
 
-                    <x-text-input
+                    <input
                         type="text" 
                         name="description"
                         rows="10"
                         field="description"
                         placeholder="description..."
                         class="w-full mt-6"
-                        :value="@old('description')"></x-text-input>
+                        :value="@old('description')"></input>
 
-                    <x-text-input
+                    <input
                         type="text"
                         name="duration"
                         field="duration"
                         placeholder="duration level..."
                         class="w-full mt-6"
-                        :value="@old('duration')"></x-text-input>
+                        :value="@old('duration')"></input>
 
-                        <x-text-input
+                        <input
                         type="text"
                         name="rating"
                         field="rating"
                         placeholder="rating..."
                         class="w-full mt-6"
-                        :value="@old('rating')"></x-text-input>
+                        :value="@old('rating')"></input>
 
-                        <x-text-input
+                        <input
                         type="text"
                         name="date"
                         field="date"
                         placeholder="date..."
                         class="w-full mt-6"
-                        :value="@old('date')"></x-text-input>
+                        :value="@old('date')"></input>
 
                     <div class="form-group">
-                        <label for="newreleases">newreleases</label>
-                        <select name="newreleases_id">
-                          @foreach ($newreleases as $newreleases)
-                            <option value="{{$newreleases->id}}" {{(old('newreleases_id') == $newreleases->id) ? "selected" : ""}}>
-                              {{$newreleases->title}}
-                            </option>
-                          @endforeach
-                     </select>
+                      
 
                <x-primary-button class="mt-6">Save Movie</x-primary-button>
                 </form>

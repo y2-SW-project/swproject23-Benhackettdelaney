@@ -19,7 +19,7 @@ class newreleasesController extends Controller
     public function index()
     {
      
-        $movies = Movie::all();
+        $movies = Movie::where('new_releases', '1')->get();
     //    $movies = Movie::paginate(10);
     //    $movies = Movie::with('newreleases')->get();
 
@@ -44,15 +44,15 @@ class newreleasesController extends Controller
      */
     public function store(Request $request)
     {
-       
 
         $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
             'description' => 'required',
-            'duration' =>'required|max:100',
+            'duration' =>'required|max:200',
             'rating' =>'required|max:5',
             'date' =>'required',
+            'new_releases'=>'required'
             //'Movie' => 'file|image|dimensions:width=300,height=400'
             // 'Movie' => 'file|image',
            
@@ -65,10 +65,11 @@ class newreleasesController extends Controller
             'description' => $request->description,
             'duration' =>$request->duration,
             'rating' =>$request->rating,
-            'date' =>$request->date
+            'date' =>$request->date,
+            'new_releases'=>$request->new_releases
         ]);
 
-        return to_route('movies.index');
+        return to_route('home');
     }
 
     /**
@@ -122,6 +123,7 @@ class newreleasesController extends Controller
             'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
+            'new_releases'=>'required'
         ]);
 
        
@@ -132,7 +134,8 @@ class newreleasesController extends Controller
             'description' => $request->description,
             'duration' =>$request->duration,
             'rating' =>$request->rating,
-            'date' =>$request->date
+            'date' =>$request->date,
+            'new_releases'=>$request->new_releases
         ]);
 
         return to_route('movies.show', $movies)->with('success','Movie updated successfully');

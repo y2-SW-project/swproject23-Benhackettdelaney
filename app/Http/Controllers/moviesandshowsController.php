@@ -54,6 +54,7 @@ class MoviesAndShowsController extends Controller
             'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
+            'new_releases'=>'required'
             //'Movie' => 'file|image|dimensions:width=300,height=400'
             // 'Movie' => 'file|image',
            
@@ -66,7 +67,8 @@ class MoviesAndShowsController extends Controller
             'description' => $request->description,
             'duration' =>$request->duration,
             'rating' =>$request->rating,
-            'date' =>$request->date
+            'date' =>$request->date,
+            'new_releases'=>$request->new_releases
         ]);
 
         return to_route('movies.index');
@@ -127,6 +129,7 @@ class MoviesAndShowsController extends Controller
             'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
+            'new_releases'=>'required'
         ]);
 
        
@@ -137,10 +140,11 @@ class MoviesAndShowsController extends Controller
             'description' => $request->description,
             'duration' =>$request->duration,
             'rating' =>$request->rating,
-            'date' =>$request->date
+            'date' =>$request->date,
+            'new_releases'=>$request->new_releases
         ]);
 
-        return to_route('movies.show', $movie)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
     }
 
     /**
@@ -152,7 +156,7 @@ class MoviesAndShowsController extends Controller
     public function destroy(Movie $movie)
     {
    
-        $movies->delete();
+        $movie->delete();
 
         return to_route('movies.index')->with('success', 'Movie deleted successfully');
     }
