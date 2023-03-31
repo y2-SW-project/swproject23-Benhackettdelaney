@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Box;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -13,6 +14,8 @@ class ExampleTest extends TestCase
      */
     public function test_that_true_is_true()
     {
-        $this->assertTrue(true);
+        $box = new Box(['torch']);
+        // $this->assertTrue(true);
+        $this->assertEquals('torch', $box->takeOne());
     }
 }

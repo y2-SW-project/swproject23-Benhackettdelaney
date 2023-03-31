@@ -94,14 +94,9 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movies)
+    public function edit(Movie $movie)
     {
-      
-        $newreleases = Movie::all();
-      
-    
-
-        return view('movies.edit', compact('movies', 'newreleases'));
+        return view('newreleases.edit')->with('Movie', $movie);
     }
 
     /**

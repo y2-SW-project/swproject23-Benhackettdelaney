@@ -7,7 +7,7 @@
      
 
             <div class="flex">
-
+            <a href="{{ route('movies.edit', $Movie) }}" class="btn btn-primary">Edit</a>
             <form action="{{ route('newreleases.destroy', $Movie) }}" method="post">
                     @method('delete')
                     @csrf

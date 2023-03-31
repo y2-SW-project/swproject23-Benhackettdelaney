@@ -97,17 +97,13 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movies)
+    public function edit(Movie $movie)
     {
       
-        $newreleases = Movie::all();
-      
-    
-
         // Load the edit view which will display the edit form
         // Pass in the current Movie so that it appears in the form.
         // return view('admin.Movies.edit')->with('Movie', $Movie, 'distilleries', $distilleries);
-        return view('movies.edit', compact('movies', 'newreleases'));
+        return view('movies.edit')->with('Movie', $movie);
     }
 
     /**

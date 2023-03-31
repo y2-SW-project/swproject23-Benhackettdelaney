@@ -22,7 +22,7 @@ class MovieFactory extends Factory
             'description' => $this->faker->word,
                 'duration' =>$this->faker->numberBetween(0, 100),
                 'rating' => $this->faker->numberBetween(0, 5),
-                'new_releases' => false,
+                'new_releases' => rand(0,1),
                 'date' => $this->faker->date(),
         ];
     }

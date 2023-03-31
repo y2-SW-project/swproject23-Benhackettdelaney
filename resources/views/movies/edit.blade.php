@@ -1,9 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Movie') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
+
+@section('content')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -61,12 +58,26 @@
                         class="w-full mt-6"
                         :value="@old('date')"></input>
 
+                      
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"   name="new_releases" value="1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                       yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"   name="new_releases" value="0">
+                    <label class="form-check-label" for="exampleRadios2">
+                        no
+                    </label>
+                </div>
+
                     <div class="form-group">
                       
 
-               <x-primary-button class="mt-6">Save Movie</x-primary-button>
+               <button class="mt-6">Save Movie</button>
                 </form>
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
