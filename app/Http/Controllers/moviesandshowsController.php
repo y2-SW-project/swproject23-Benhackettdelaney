@@ -21,10 +21,11 @@ class MoviesAndShowsController extends Controller
      
 
         $movies = Movie::all();
-       $movies = Movie::paginate(10);
+   
        $movies = Movie::with('newreleases')->get();
 
         return view('movies.index')->with('movies', $movies);
+        return view('movies.show    ');
     }
 
     /**
@@ -54,12 +55,17 @@ class MoviesAndShowsController extends Controller
             'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
-            'new_releases'=>'required'
-            //'Movie' => 'file|image|dimensions:width=300,height=400'
-            // 'Movie' => 'file|image',
-           
+            'new_releases'=>'required',
+            'image_id' => ['file|image']
+            
         ]);
+        $image_id = $request->file('Fury.jpg');
+        $extension = $image_id->getClientOriginalExtension();
+        // the filename needs to be unique, I use title and add the date to guarantee a unique filename, ISBN would be better here.
+        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
 
+        // store the file $book_image in /public/images, and name it $filename
+        $path = $image_id->storeAs('public/images', $filename);
        
         Movie::create([
             'age_group' => $request->age_group,
@@ -68,7 +74,8 @@ class MoviesAndShowsController extends Controller
             'duration' =>$request->duration,
             'rating' =>$request->rating,
             'date' =>$request->date,
-            'new_releases'=>$request->new_releases
+            'new_releases'=>$request->new_releases, 
+            'image_id' => ['file|image']
         ]);
 
         return to_route('movies.index');
@@ -140,7 +147,7 @@ class MoviesAndShowsController extends Controller
             'new_releases'=>$request->new_releases
         ]);
 
-        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
+        return to_route('movies.show', $movie)->with('success','Movie updated successfully');
     }
 
     /**

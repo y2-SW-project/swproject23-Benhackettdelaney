@@ -1,6 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-2">
+        <img src="..." class="rounded mx-auto d-block" alt="...">
+        </div>
+        <div class = "col-2">
+        <img src="..." class="rounded mx-auto d-block" alt="...">
+            </div>
+            <div class = "col-2">
+            <img src="..." class="rounded mx-auto d-block" alt="...">
+            </div>
+            <div class = "col-2">
+            <img src="..." class="rounded mx-auto d-block" alt="...">
+            </div>
+            <div class = "col-2">
+            <img src="..." class="rounded mx-auto d-block" alt="...">
+            </div>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-center">
     <a href="{{ route('newreleases.create') }}" class="btn btn-primary">Create</a>

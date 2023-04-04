@@ -24,6 +24,7 @@ class MovieFactory extends Factory
                 'rating' => $this->faker->numberBetween(0, 5),
                 'new_releases' => rand(0,1),
                 'date' => $this->faker->date(),
+                 'image_id' => "Fury.jpg",
         ];
     }
 }

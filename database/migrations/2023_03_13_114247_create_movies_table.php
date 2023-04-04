@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('duration');
             $table->integer('rating');
             $table->date('date');
+            $table->string('image_id');
             $table->timestamps();
         });
     }
