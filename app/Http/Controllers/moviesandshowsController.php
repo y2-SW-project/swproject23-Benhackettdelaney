@@ -25,7 +25,7 @@ class MoviesAndShowsController extends Controller
        $movies = Movie::with('newreleases')->get();
 
         return view('movies.index')->with('movies', $movies);
-        return view('movies.show    ');
+        return view('movies.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class MoviesAndShowsController extends Controller
             'rating' =>'required|max:5',
             'date' =>'required',
             'new_releases'=>'required',
-            'image_id' => ['file|image']
+            'image_id' => 'file|image'
             
         ]);
         $image_id = $request->file('Fury.jpg');
@@ -75,7 +75,7 @@ class MoviesAndShowsController extends Controller
             'rating' =>$request->rating,
             'date' =>$request->date,
             'new_releases'=>$request->new_releases, 
-            'image_id' => ['file|image']
+            'image_id' => 'file|image'
         ]);
 
         return to_route('movies.index');

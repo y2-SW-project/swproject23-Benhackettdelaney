@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-5">
-        <div class="row justify-content-center">
-            <div>
+    <div class="container mx-5 bg-dark">
+        <div class="row justify-content-center bg-dark">
+            <!-- <div>
                 <h1>Hello World</h1>
                 <h3>This is a laravel-bootstrap template</h3>
                 <div class="mt-5">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 @endsection

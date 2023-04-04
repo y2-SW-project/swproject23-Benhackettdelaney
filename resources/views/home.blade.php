@@ -2,45 +2,25 @@
 
 @section('content')
 
-<div class = "container">
-    <div class = "row">
-        <div class = "col-2">
-        <img src="..." class="rounded mx-auto d-block" alt="...">
-        </div>
-        <div class = "col-2">
-        <img src="..." class="rounded mx-auto d-block" alt="...">
-            </div>
-            <div class = "col-2">
-            <img src="..." class="rounded mx-auto d-block" alt="...">
-            </div>
-            <div class = "col-2">
-            <img src="..." class="rounded mx-auto d-block" alt="...">
-            </div>
-            <div class = "col-2">
-            <img src="..." class="rounded mx-auto d-block" alt="...">
-            </div>
-    </div>
-</div>
-<div class="container">
+
+<div>
     <div class="row justify-content-center">
-    <a href="{{ route('newreleases.create') }}" class="btn btn-primary">Create</a>
-    @forelse ($movies as $Movie)
-                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                    <h2 class="font-bold text-2xl">
-                    <a href="{{ route('movies.show', $Movie) }}"> <strong> Title </strong> {{ $Movie->title }}</a>
-                    </h2>
-                    <p class="mt-2">
+        @forelse ($movies as $Movie)
 
-                        {{$Movie->price}}
+        <div class="col my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+            <a href="{{ route('movies.show', $Movie) }}">
+                <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="344" height="194">
+            </a>
+        </div>
 
-                    </p>
-
-                </div>
-            @empty
-            <p>No Movies</p>
-            @endforelse
-            {{$movies->links()}}
+        @empty
+        <p>No Movies</p>
+        @endforelse
+        {{$movies->links()}}
 
     </div>
+    <a href="{{ route('newreleases.create') }}" class="btn btn-primary">Create</a>
+
 </div>
+
 @endsection
