@@ -134,7 +134,7 @@ class newreleasesController extends Controller
             'new_releases'=>$request->new_releases
         ]);
 
-        return to_route('movies.show', $movies)->with('success','Movie updated successfully');
+        return to_route('movies.show', $Movie)->with('success','Movie updated successfully');
     }
 
     /**

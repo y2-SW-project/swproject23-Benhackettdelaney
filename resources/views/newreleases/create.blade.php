@@ -19,14 +19,8 @@
 
                 <input type="text" name="date" field="date" placeholder="date..." class="w-full mt-6" :value="@old('date')"></input>
 
+                <input type="text" name="image_id" field="image_id" placeholder="image_id..." class="w-full mt-6" :value="@old('image_id')"></input>
 
-                <!-- <input
-                        type="text"
-                        name="new_releases"
-                        field="new_releases"
-                        placeholder="new_releases..."
-                        class="w-full mt-6"
-                        :value="@old('new releases')"></input> -->
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio"   name="new_releases" value="1" checked>

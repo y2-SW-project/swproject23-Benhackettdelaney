@@ -78,7 +78,7 @@ class MoviesAndShowsController extends Controller
             'image_id' => 'file|image'
         ]);
 
-        return to_route('movies.index');
+        return to_route('home');
     }
 
     /**
@@ -161,6 +161,6 @@ class MoviesAndShowsController extends Controller
    
         $movie->delete();
 
-        return to_route('movies.index')->with('success', 'Movie deleted successfully');
+        return to_route('home')->with('success', 'Movie deleted successfully');
     }
 }

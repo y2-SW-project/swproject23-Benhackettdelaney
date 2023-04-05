@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        $movies = Movie::paginate(20);
+        $movies = Movie::paginate(10);
         // $movies = Movie::with('newreleases')->get();
  
          return view('home')->with('movies', $movies);

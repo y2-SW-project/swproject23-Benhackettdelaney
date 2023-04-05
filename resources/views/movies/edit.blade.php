@@ -58,6 +58,14 @@
                         class="w-full mt-6"
                         :value="@old('date')"></input>
 
+                        <input
+                        type="text"
+                        name="image_id"
+                        field="image_id"
+                        placeholder="image_id..."
+                        class="w-full mt-6"
+                        :value="@old('image_id')"></input>
+
                       
                 <div class="form-check">
                     <input class="form-check-input" type="radio"   name="new_releases" value="1" checked>

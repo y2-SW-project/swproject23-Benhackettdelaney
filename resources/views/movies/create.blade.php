@@ -66,7 +66,13 @@
                         class="w-full mt-6"
                         :value="@old('new releases')"></input>
 
-                    
+                        <input
+                        type="text"
+                        name="image_id"
+                        field="image_id"
+                        placeholder="image_id..."
+                        class="w-full mt-6"
+                        :value="@old('image_id')"></input>
 
                     <div class="form-group">
                        
