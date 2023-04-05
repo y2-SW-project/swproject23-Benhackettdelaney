@@ -49,16 +49,20 @@ class newreleasesController extends Controller
             'age_group' => 'required|max:18',
             'title' => 'required',
             'description' => 'required',
-            'duration' =>'required|max:200',
+            'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
-            'new_releases'=>'required'
+            'new_releases'=>'required',
+            'image_id' => 'file|image'
             
-            //'Movie' => 'file|image|dimensions:width=300,height=400'
-            // 'Movie' => 'file|image',
-           
         ]);
+        $image_id = $request->file('Fury.jpg');
+        $extension = $image_id->getClientOriginalExtension();
 
+        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
+
+       
+        $path = $image_id->storeAs('public/images', $filename);
        
         Movie::create([
             'age_group' => $request->age_group,
@@ -67,7 +71,8 @@ class newreleasesController extends Controller
             'duration' =>$request->duration,
             'rating' =>$request->rating,
             'date' =>$request->date,
-            'new_releases'=>$request->new_releases
+            'new_releases'=>$request->new_releases, 
+            'image_id' => 'file|image'
         ]);
 
         return to_route('home');
@@ -112,16 +117,24 @@ class newreleasesController extends Controller
      
 
          //   //This function is quite like the store() function.
-          $request->validate([
+         $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
             'description' => 'required',
             'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
-            'new_releases'=>'required'
+            'new_releases'=>'required',
+            'image_id' => 'file|image'
         ]);
 
+        $image_id = $request->file('Fury.jpg');
+        $extension = $image_id->getClientOriginalExtension();
+
+        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
+
+       
+        $path = $image_id->storeAs('public/images', $filename);
        
         
         $Movie->update([
@@ -131,7 +144,8 @@ class newreleasesController extends Controller
             'duration' =>$request->duration,
             'rating' =>$request->rating,
             'date' =>$request->date,
-            'new_releases'=>$request->new_releases
+            'new_releases'=>$request->new_releases,
+            'image_id' => 'file|image'
         ]);
 
         return to_route('movies.show', $Movie)->with('success','Movie updated successfully');

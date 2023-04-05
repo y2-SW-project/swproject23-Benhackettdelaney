@@ -36,7 +36,7 @@
                             <a class="nav-link" href="{{ route('home') }}">{{ __('movies') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('newreleases.index') }}">{{ __('newly releaesed movies') }}</a>
+                            <a class="nav-link" href="{{ route('newreleases.index') }}">{{ __('newly released movies') }}</a>
                         </li>
                     </ul>
 

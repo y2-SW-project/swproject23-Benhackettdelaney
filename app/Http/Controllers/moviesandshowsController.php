@@ -35,7 +35,7 @@ class MoviesAndShowsController extends Controller
      */
     public function create()
     {
-        return view('movies.create');
+        return view('home');
     }
 
     /**
@@ -61,10 +61,10 @@ class MoviesAndShowsController extends Controller
         ]);
         $image_id = $request->file('Fury.jpg');
         $extension = $image_id->getClientOriginalExtension();
-        // the filename needs to be unique, I use title and add the date to guarantee a unique filename, ISBN would be better here.
+
         $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
 
-        // store the file $book_image in /public/images, and name it $filename
+       
         $path = $image_id->storeAs('public/images', $filename);
        
         Movie::create([
@@ -107,9 +107,7 @@ class MoviesAndShowsController extends Controller
     public function edit(Movie $movie)
     {
       
-        // Load the edit view which will display the edit form
-        // Pass in the current Movie so that it appears in the form.
-        // return view('admin.Movies.edit')->with('Movie', $Movie, 'distilleries', $distilleries);
+       
         return view('movies.edit')->with('Movie', $movie);
     }
 
@@ -132,9 +130,17 @@ class MoviesAndShowsController extends Controller
             'duration' =>'required|max:100',
             'rating' =>'required|max:5',
             'date' =>'required',
-            'new_releases'=>'required'
+            'new_releases'=>'required',
+            'image_id' => 'file|image'
         ]);
 
+        $image_id = $request->file('Fury.jpg');
+        $extension = $image_id->getClientOriginalExtension();
+
+        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
+
+       
+        $path = $image_id->storeAs('public/images', $filename);
        
         
         $movie->update([
@@ -144,10 +150,11 @@ class MoviesAndShowsController extends Controller
             'duration' =>$request->duration,
             'rating' =>$request->rating,
             'date' =>$request->date,
-            'new_releases'=>$request->new_releases
+            'new_releases'=>$request->new_releases,
+            'image_id' => 'file|image'
         ]);
 
-        return to_route('movies.show', $movie)->with('success','Movie updated successfully');
+        return to_route('home', $movie)->with('success','Movie updated successfully');
     }
 
     /**
