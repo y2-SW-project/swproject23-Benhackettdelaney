@@ -59,7 +59,7 @@ class MoviesAndShowsController extends Controller
             'image_id' => 'file|image'
             
         ]);
-        $image_id = $request->file('Fury.jpg');
+        $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
 
         $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
@@ -75,7 +75,7 @@ class MoviesAndShowsController extends Controller
             'rating' =>$request->rating,
             'date' =>$request->date,
             'new_releases'=>$request->new_releases, 
-            'image_id' => 'file|image'
+            'image_id' => $filename
         ]);
 
         return to_route('home');
@@ -131,10 +131,10 @@ class MoviesAndShowsController extends Controller
             'rating' =>'required|max:5',
             'date' =>'required',
             'new_releases'=>'required',
-            'image_id' => 'file|image'
+     
         ]);
 
-        $image_id = $request->file('Fury.jpg');
+        $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
 
         $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
@@ -151,7 +151,7 @@ class MoviesAndShowsController extends Controller
             'rating' =>$request->rating,
             'date' =>$request->date,
             'new_releases'=>$request->new_releases,
-            'image_id' => 'file|image'
+            'image_id' => $filename
         ]);
 
         return to_route('home', $movie)->with('success','Movie updated successfully');

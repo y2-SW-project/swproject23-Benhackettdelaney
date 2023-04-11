@@ -2,6 +2,23 @@
 
 @section('content')
 
+
+
+<div class="col my-6 p-6 bg-dark border-b border-gray-200 shadow-sm sm:rounded-lg">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner"> <div>
+                @forelse ($movies as $Movie)
+                        <a href="{{ route('movies.show', $Movie) }}">
+                            <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="1920" height="721">
+                    </div>
+                    @empty
+            @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> 
      

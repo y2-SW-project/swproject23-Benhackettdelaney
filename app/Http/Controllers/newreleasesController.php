@@ -44,7 +44,7 @@ class newreleasesController extends Controller
      */
     public function store(Request $request)
     {
-
+          
         $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
@@ -53,10 +53,10 @@ class newreleasesController extends Controller
             'rating' =>'required|max:5',
             'date' =>'required',
             'new_releases'=>'required',
-            'image_id' => 'file|image'
+          
             
         ]);
-        $image_id = $request->file('Fury.jpg');
+        $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
 
         $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
@@ -72,7 +72,7 @@ class newreleasesController extends Controller
             'rating' =>$request->rating,
             'date' =>$request->date,
             'new_releases'=>$request->new_releases, 
-            'image_id' => 'file|image'
+            'image_id' => $filename
         ]);
 
         return to_route('home');
@@ -125,10 +125,10 @@ class newreleasesController extends Controller
             'rating' =>'required|max:5',
             'date' =>'required',
             'new_releases'=>'required',
-            'image_id' => 'file|image'
+    
         ]);
 
-        $image_id = $request->file('Fury.jpg');
+        $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
 
         $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
@@ -145,7 +145,7 @@ class newreleasesController extends Controller
             'rating' =>$request->rating,
             'date' =>$request->date,
             'new_releases'=>$request->new_releases,
-            'image_id' => 'file|image'
+            'image_id' => $filename
         ]);
 
         return to_route('movies.show', $Movie)->with('success','Movie updated successfully');
