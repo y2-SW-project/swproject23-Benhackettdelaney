@@ -21,14 +21,7 @@
         </div>
     </div>
   
-        <div class="container">
-        @forelse ($movies as $Movie)
-            <div class= "row justify-content-left">
-                {{$movies -> title}}
-            </div>
-        </div>
-        @empty
-            @endforelse
+    
 
     <div>
         <div class="row justify-content-center bg-dark">

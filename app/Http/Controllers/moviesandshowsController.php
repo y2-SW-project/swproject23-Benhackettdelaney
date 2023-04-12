@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use App\Models\newreleases;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,6 @@ class MoviesAndShowsController extends Controller
      
 
         $movies = Movie::all();
-   
        $movies = Movie::with('newreleases')->get();
 
         return view('movies.index')->with('movies', $movies);
