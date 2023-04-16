@@ -52,6 +52,51 @@ $array = array(
 
         </div>
 
+    </div>
+
+    <div class="row justify-content-center bg-dark">
+         
+            @forelse ($movies->take(4) as $Movie)
+
+            <div class="col gy-5 my-6 p-6 bg-dark border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <a href="{{ route('movies.show', $Movie) }}">
+                    <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="867" height="548">
+                </a>
+            </div>
+            @empty
+            @endforelse
+         
+
+
+        </div>
+
+    <div>
+
+        <div class="card text-center bg-dark">
+  <div class="card-header">
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-danger">Benflix</h5>
+    <div class = "row">
+    <div class = "col-2">
+    <p class=<p><a class="link-opacity-10" href="#">Terms and Privacy Notice</a>
+    </div>
+    <div class = "col-2">
+    <p class=<p><a class="link-opacity-10" href="#">Send us feedback</a>
+    </div>
+    <div class = "col-2">
+    <p class=<p><a class="link-opacity-10" href="#">Help</a>
+    </div>
+    <div class = "col-2">
+    <p class=<p><a class="link-opacity-20" href="#">Cookies Notice</a>
+    </div>
+    <div class = "col-2">
+    <p class=<p><a class="link-opacity-10" href="#">2023-2023 , Benflix.com,inc or its affiliates</a>
+    </div>
+</div>
+  
+
    
 
 
