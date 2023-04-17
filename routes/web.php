@@ -36,6 +36,3 @@ Route::get('/newreleases/{movie}', [App\Http\Controllers\newreleasesController::
 Route::get('/newreleases/{movie}/edit', [App\Http\Controllers\newreleasesController::class, 'edit'])->name('newreleases.edit');
 Route::post('/newreleases', [App\Http\Controllers\newreleasesController::class, 'store'])->name('newreleases.store');
 Route::delete('/newreleases/{movie}', [App\Http\Controllers\newreleasesController::class, 'destroy'])->name('newreleases.destroy');
-
-
-

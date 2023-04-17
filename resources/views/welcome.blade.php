@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-5 bg-dark">
+    <div class=" mx-5 bg-dark">
         <div class="row justify-content-center bg-dark">
+            <h1 class = "text-danger ">Benflix</h1>
             <!-- <div>
                 <h1>Hello World</h1>
                 <h3>This is a laravel-bootstrap template</h3>

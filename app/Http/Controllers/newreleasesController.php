@@ -84,14 +84,15 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show($id)
     {
-       
+        $movie = Movie::findOrFail($id);
+
         if(!Auth::id()) {
            return abort(403);
          }
-         
-        return view('newreleases.show')->with('Movie', $movie);
+        //  dd();
+        return view('newreleases.show')->with('movie', $movie);
     }
 
     /**
@@ -102,7 +103,7 @@ class newreleasesController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('newreleases.edit')->with('Movie', $movie);
+        return view('newreleases.index')->with('Movie', $movie);
     }
 
     /**

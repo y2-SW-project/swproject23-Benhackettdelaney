@@ -91,6 +91,7 @@ class MoviesAndShowsController extends Controller
     public function show(Movie $movie)
     {
 
+        
 
         if (!Auth::id()) {
             return abort(403);
@@ -109,7 +110,7 @@ class MoviesAndShowsController extends Controller
     {
 
 
-        return view('movies.edit')->with('Movie', $movie);
+        return view('home')->with('Movie', $movie);
     }
 
     /**
@@ -119,7 +120,7 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, Movie $Movie)
     {
 
 
@@ -132,8 +133,17 @@ class MoviesAndShowsController extends Controller
             'rating' => 'required|max:5',
             'date' => 'required',
             'new_releases' => 'required',
-
+            
         ]);
+
+            $image_id = $request->file('image_id');
+            $extension = $image_id->getClientOriginalExtension();
+    
+            $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.' . $extension;
+    
+    
+            $path = $image_id->storeAs('public/images', $filename);
+       
 
         $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
@@ -144,7 +154,7 @@ class MoviesAndShowsController extends Controller
         $path = $image_id->storeAs('public/images', $filename);
 
 
-        $movie->update([
+        $Movie->update([
             'age_group' => $request->age_group,
             'title' => $request->title,
             'description' => $request->description,
@@ -155,7 +165,7 @@ class MoviesAndShowsController extends Controller
             'image_id' => $filename
         ]);
 
-        return to_route('home', $movie)->with('success', 'Movie updated successfully');
+        return to_route('home', $Movie)->with('success', 'Movie updated successfully');
     }
 
     /**
