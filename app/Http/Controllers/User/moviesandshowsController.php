@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class newreleasesController extends Controller
+class MoviesAndShowsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +19,15 @@ class newreleasesController extends Controller
      */
     public function index()
     {
-     
-        $movies = Movie::where('new_releases', '1')->get();
-        // $genres = Genre::all();
-        // return($genres);
-        return view('newreleases.index')->with('movies', $movies);
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        $movies = Movie::all();
+        
+
+        return view('user.movies.index')->with('movies', $movies);
+        return view('user.movies.show');
+
     }
 
     /**
@@ -33,7 +37,7 @@ class newreleasesController extends Controller
      */
     public function create()
     {
-        return view('newreleases.create');
+        return view('user.movies.create');
     }
 
     /**
@@ -44,38 +48,40 @@ class newreleasesController extends Controller
      */
     public function store(Request $request)
     {
-          
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
         $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
             'description' => 'required',
-            'duration' =>'required|max:100',
-            'rating' =>'required|max:5',
-            'date' =>'required',
-            'new_releases'=>'required',
-          
-            
+            'duration' => 'required|max:200',
+            'rating' => 'required|max:5',
+            'date' => 'required',
+            'new_releases' => 'required',
+            'image_id' => 'file|image'
+
         ]);
         $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
 
-        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
+        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.' . $extension;
 
-       
+
         $path = $image_id->storeAs('public/images', $filename);
-       
+
         Movie::create([
             'age_group' => $request->age_group,
             'title' => $request->title,
             'description' => $request->description,
-            'duration' =>$request->duration,
-            'rating' =>$request->rating,
-            'date' =>$request->date,
-            'new_releases'=>$request->new_releases, 
+            'duration' => $request->duration,
+            'rating' => $request->rating,
+            'date' => $request->date,
+            'new_releases' => $request->new_releases,
             'image_id' => $filename
         ]);
 
-        return to_route('home');
+        return to_route('user.movies.create');
     }
 
     /**
@@ -84,15 +90,17 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movie $movie)
     {
-        $movie = Movie::findOrFail($id);
 
-        if(!Auth::id()) {
-           return abort(403);
-         }
-        //  dd();
-        return view('newreleases.show')->with('movie', $movie);
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        if (!Auth::id()) {
+            return abort(403);
+        }
+
+        return view('user.movies.show')->with('Movie', $movie);
     }
 
     /**
@@ -103,7 +111,10 @@ class newreleasesController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('newreleases.edit')->with('Movie', $movie);
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        return view('user.movies.edit')->with('Movie', $movie);
     }
 
     /**
@@ -115,41 +126,51 @@ class newreleasesController extends Controller
      */
     public function update(Request $request, Movie $Movie)
     {
-     
+        $user = Auth::user();
+        $user->authorizeRoles('user');
 
-         //   //This function is quite like the store() function.
-         $request->validate([
+        //   //This function is quite like the store() function.
+        $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
             'description' => 'required',
-            'duration' =>'required|max:100',
-            'rating' =>'required|max:5',
-            'date' =>'required',
-            'new_releases'=>'required',
-    
+            'duration' => 'required|max:100',
+            'rating' => 'required|max:5',
+            'date' => 'required',
+            'new_releases' => 'required',
+            
         ]);
+
+            $image_id = $request->file('image_id');
+            $extension = $image_id->getClientOriginalExtension();
+    
+            $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.' . $extension;
+    
+    
+            $path = $image_id->storeAs('public/images', $filename);
+       
 
         $image_id = $request->file('image_id');
         $extension = $image_id->getClientOriginalExtension();
 
-        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.'. $extension;
+        $filename = date('Y-s-d-His') . '_' . $request->input('title') . '.' . $extension;
 
-       
+
         $path = $image_id->storeAs('public/images', $filename);
-       
-        
+
+
         $Movie->update([
             'age_group' => $request->age_group,
             'title' => $request->title,
             'description' => $request->description,
-            'duration' =>$request->duration,
-            'rating' =>$request->rating,
-            'date' =>$request->date,
-            'new_releases'=>$request->new_releases,
+            'duration' => $request->duration,
+            'rating' => $request->rating,
+            'date' => $request->date,
+            'new_releases' => $request->new_releases,
             'image_id' => $filename
         ]);
 
-        return to_route('movies.show', $Movie)->with('success','Movie updated successfully');
+        return to_route('user.movies.show', $Movie)->with('success', 'Movie updated successfully');
     }
 
     /**
@@ -160,8 +181,11 @@ class newreleasesController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
         $movie->delete();
 
-        return to_route('newrelease.index')->with('success', 'Movie deleted successfully');
+        return to_route('user.movies.destroy')->with('success', 'Movie deleted successfully');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
-use App\Models\newreleases;
+
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +19,13 @@ class newreleasesController extends Controller
      */
     public function index()
     {
-     
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         $movies = Movie::where('new_releases', '1')->get();
         // $genres = Genre::all();
         // return($genres);
-        return view('newreleases.index')->with('movies', $movies);
+        return view('admin.newreleases.index')->with('movies', $movies);
     }
 
     /**
@@ -33,7 +35,10 @@ class newreleasesController extends Controller
      */
     public function create()
     {
-        return view('newreleases.create');
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        return view('admin.newreleases.create');
     }
 
     /**
@@ -44,7 +49,9 @@ class newreleasesController extends Controller
      */
     public function store(Request $request)
     {
-          
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
@@ -75,7 +82,7 @@ class newreleasesController extends Controller
             'image_id' => $filename
         ]);
 
-        return to_route('home');
+        return to_route('admin.newreleases.create');
     }
 
     /**
@@ -86,13 +93,16 @@ class newreleasesController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         $movie = Movie::findOrFail($id);
 
         if(!Auth::id()) {
            return abort(403);
          }
         //  dd();
-        return view('newreleases.show')->with('movie', $movie);
+        return view('admin.newreleases.show')->with('movie', $movie);
     }
 
     /**
@@ -103,7 +113,10 @@ class newreleasesController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('newreleases.edit')->with('Movie', $movie);
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        return view('admin.newreleases.edit')->with('Movie', $movie);
     }
 
     /**
@@ -115,7 +128,8 @@ class newreleasesController extends Controller
      */
     public function update(Request $request, Movie $Movie)
     {
-     
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
 
          //   //This function is quite like the store() function.
          $request->validate([
@@ -149,7 +163,7 @@ class newreleasesController extends Controller
             'image_id' => $filename
         ]);
 
-        return to_route('movies.show', $Movie)->with('success','Movie updated successfully');
+        return to_route('admin.movies.show', $Movie)->with('success','Movie updated successfully');
     }
 
     /**
@@ -160,8 +174,11 @@ class newreleasesController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         $movie->delete();
 
-        return to_route('newrelease.index')->with('success', 'Movie deleted successfully');
+        return to_route('admin.newrelease.index')->with('success', 'Movie deleted successfully');
     }
 }

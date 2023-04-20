@@ -46,10 +46,10 @@
     </div>
 </div>
   
-<a href="{{ route('movies.edit', $Movie) }}" class="btn-link ml-auto">Edit</a>
+<a href="{{ route('admin.movies.edit', $Movie) }}" class="btn-link ml-auto">Edit</a>
 
 <!-- delete button is wrapped in a form, with the delete method. -->
-<form action="{{ route('movies.destroy', $Movie) }}" method="post">
+<form action="{{ route('admin.movies.destroy', $Movie) }}" method="post">
     @method('delete')
     @csrf
     <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete?')">Delete </button>

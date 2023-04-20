@@ -10,8 +10,8 @@ class Movie extends Model
     use HasFactory;
     protected $fillable = ['age_group', 'title','description', 'duration', 'rating', 'date','new_releases','image_id','updated_at', 'created_at'];
     
-    public function genres()
+    public function mvoies()
     {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsTo(Movie::class);
     }
 }

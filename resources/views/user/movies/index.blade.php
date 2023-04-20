@@ -25,7 +25,12 @@ $array2 = array(
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner b">
                     <div>
-                      
+                        @foreach ($movies as $Movie)
+                        <a href="{{ route('user.movies.show', $Movie) }}">
+                            <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="1920" height="721">
+                    </div>
+                    @break
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -41,7 +46,7 @@ $array2 = array(
             @forelse ($movies->take(5) as $Movie)
 
             <div class="col gy-5 my-6 p-6 bg-dark border-b ms-2 border-gray-200 shadow-sm sm:rounded-lg">
-                <a href="{{ route('movies.show', $Movie) }}">
+                <a href="{{ route('user.movies.show', $Movie) }}">
                     <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="350" height="194">
                 </a>
             </div>
@@ -64,7 +69,7 @@ $array2 = array(
         @forelse ($movies->take(4) as $Movie)
 
         <div class="col gy-5 my-6 p-6 bg-dark border-b border-gray-200 shadow-sm sm:rounded-lg ms-5">
-            <a href="{{ route('movies.show', $Movie) }}">
+            <a href="{{ route('user.movies.show', $Movie) }}">
                 <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="867" height="548">
             </a>
         </div>
@@ -106,7 +111,7 @@ $array2 = array(
 
 
 
-                <a href="{{ route('movies.create') }}" class="btn btn-primary">Create</a>
+                <a href="{{ route('user.movies.create') }}" class="btn btn-primary">Create</a>
             </div>
 
 

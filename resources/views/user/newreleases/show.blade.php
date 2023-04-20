@@ -60,7 +60,7 @@
                 @forelse ($movie->take(3) as $Movie)
                 <div class="col-2">
                     <div class="col gy-5 my-6 p-6 bg-dark border-b ms-2 border-gray-200 shadow-sm sm:rounded-lg">
-                        <a href="{{ route('newreleases.show', $Movie) }}">
+                        <a href="{{ route('user.newreleases.show', $Movie) }}">
                             <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="350" height="194">
                         </a>
                     </div>
@@ -96,10 +96,10 @@
                 <div class="flex">
 
                     <!-- when EDIT BUTTON is clicked, route to admin.books.edit -->
-                    <a href="{{ route('newreleases.edit', $movie) }}" class="btn-link ml-auto">Edit</a>
+                    <a href="{{ route('user.newreleases.edit', $movie) }}" class="btn-link ml-auto">Edit</a>
 
                     <!-- delete button is wrapped in a form, with the delete method. -->
-                    <form action="{{ route('newreleases.destroy', $movie) }}" method="post">
+                    <form action="{{ route('user.newreleases.destroy', $movie) }}" method="post">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete?')">Delete </button>

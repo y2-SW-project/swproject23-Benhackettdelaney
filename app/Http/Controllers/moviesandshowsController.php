@@ -36,7 +36,7 @@ class MoviesAndShowsController extends Controller
      */
     public function create()
     {
-        return view('home');
+        return view('movies.create');
     }
 
     /**
@@ -110,7 +110,7 @@ class MoviesAndShowsController extends Controller
     {
 
 
-        return view('home')->with('Movie', $movie);
+        return view('movies.edit')->with('Movie', $movie);
     }
 
     /**
@@ -165,7 +165,7 @@ class MoviesAndShowsController extends Controller
             'image_id' => $filename
         ]);
 
-        return to_route('home', $Movie)->with('success', 'Movie updated successfully');
+        return to_route('movies.show', $Movie)->with('success', 'Movie updated successfully');
     }
 
     /**
@@ -179,6 +179,6 @@ class MoviesAndShowsController extends Controller
 
         $movie->delete();
 
-        return to_route('home')->with('success', 'Movie deleted successfully');
+        return to_route('movies.destroy')->with('success', 'Movie deleted successfully');
     }
 }

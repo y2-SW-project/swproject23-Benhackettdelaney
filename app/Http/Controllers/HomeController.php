@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
-    /**
+       /**
      * Create a new controller instance.
      *
      * @return void
@@ -22,13 +24,35 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $movies = Movie::all();
-        $movies = Movie::paginate(10);
-        // $movies = Movie::with('newreleases')->get();
- 
-         return view('home')->with('movies', $movies);
-       // return view('home');
+
+        $user = Auth::user();
+        $home = 'home';
+
+        if($user->hasRole('admin')){
+            $home = 'admin.movies.index';  
+        }
+        else if ($user->hasRole('user')){
+            $home = 'user.movies.index';
+        }
+        return redirect()->route($home);
     }
+
+    public function newreleasesIndex(Request $request)
+    {
+
+        $user = Auth::user();
+        $home = 'home';
+
+        if($user->hasRole('admin')){
+            $home = 'admin.movies.index';  
+        }
+        else if ($user->hasRole('user')){
+            $home = 'user.movies.index';
+        }
+        return redirect()->route($home);
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
@@ -19,11 +19,13 @@ class newreleasesController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $user->authorizeRoles('user');
      
         $movies = Movie::where('new_releases', '1')->get();
         // $genres = Genre::all();
         // return($genres);
-        return view('newreleases.index')->with('movies', $movies);
+        return view('user.newreleases.index')->with('movies', $movies);
     }
 
     /**
@@ -33,7 +35,10 @@ class newreleasesController extends Controller
      */
     public function create()
     {
-        return view('newreleases.create');
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        return view('user.newreleases.create');
     }
 
     /**
@@ -44,7 +49,9 @@ class newreleasesController extends Controller
      */
     public function store(Request $request)
     {
-          
+            $user = Auth::user();
+        $user->authorizeRoles('user');
+
         $request->validate([
             'age_group' => 'required|max:18',
             'title' => 'required',
@@ -75,7 +82,7 @@ class newreleasesController extends Controller
             'image_id' => $filename
         ]);
 
-        return to_route('home');
+        return to_route('user.newreleases.create');
     }
 
     /**
@@ -86,13 +93,17 @@ class newreleasesController extends Controller
      */
     public function show($id)
     {
+
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
         $movie = Movie::findOrFail($id);
 
         if(!Auth::id()) {
            return abort(403);
          }
         //  dd();
-        return view('newreleases.show')->with('movie', $movie);
+        return view('user.newreleases.show')->with('movie', $movie);
     }
 
     /**
@@ -103,7 +114,9 @@ class newreleasesController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('newreleases.edit')->with('Movie', $movie);
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+        return view('user.newreleases.edit')->with('Movie', $movie);
     }
 
     /**
@@ -115,7 +128,8 @@ class newreleasesController extends Controller
      */
     public function update(Request $request, Movie $Movie)
     {
-     
+        $user = Auth::user();
+        $user->authorizeRoles('user');
 
          //   //This function is quite like the store() function.
          $request->validate([
@@ -149,7 +163,7 @@ class newreleasesController extends Controller
             'image_id' => $filename
         ]);
 
-        return to_route('movies.show', $Movie)->with('success','Movie updated successfully');
+        return to_route('user.newreleases.show', $Movie)->with('success','Movie updated successfully');
     }
 
     /**
@@ -160,8 +174,10 @@ class newreleasesController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('user');
         $movie->delete();
 
-        return to_route('newrelease.index')->with('success', 'Movie deleted successfully');
+        return to_route('user.newrelease.index')->with('success', 'Movie deleted successfully');
     }
 }
