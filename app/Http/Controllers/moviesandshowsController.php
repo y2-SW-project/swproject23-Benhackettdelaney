@@ -21,7 +21,7 @@ class MoviesAndShowsController extends Controller
     {
 
 
-        $movies = Movie::all();
+        $movies = Movie::where('new_releases', '0')->get(); 
         
 
         return view('movies.index')->with('movies', $movies);
@@ -88,16 +88,16 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show(Movie $Movie )
     {
 
-        
+        $Movie = Movie::where('new_releases', '0')->get(); 
 
         if (!Auth::id()) {
             return abort(403);
         }
 
-        return view('movies.show')->with('Movie', $movie);
+        return view('movies.show')->with('Movie', $Movie);
     }
 
     /**
@@ -174,11 +174,11 @@ class MoviesAndShowsController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Movie $Movie)
     {
 
-        $movie->delete();
+        $Movie->delete();
 
-        return to_route('movies.destroy')->with('success', 'Movie deleted successfully');
+        return to_route('home')->with('success', 'Movie deleted successfully');
     }
 }

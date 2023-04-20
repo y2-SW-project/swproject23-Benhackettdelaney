@@ -25,7 +25,12 @@ $array2 = array(
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner b">
                     <div>
-                      
+                        @foreach ($movies as $Movie)
+                        <a href="{{ route('movies.show', $Movie) }}">
+                            <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="1920" height="721">
+                    </div>
+                    @break
+                    @endforeach
                 </div>
             </div>
         </div>

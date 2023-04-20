@@ -86,6 +86,7 @@ class newreleasesController extends Controller
      */
     public function show($id)
     {
+        $movies = Movie::where('new_releases', '1')->get(); 
         $movie = Movie::findOrFail($id);
 
         if(!Auth::id()) {
@@ -93,6 +94,7 @@ class newreleasesController extends Controller
          }
         //  dd();
         return view('newreleases.show')->with('movie', $movie);
+        return view('newreleases.show')->with('movie', $movies);
     }
 
     /**

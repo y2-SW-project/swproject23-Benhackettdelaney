@@ -27,17 +27,18 @@
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio"   name="new_releases" value="1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                       yes
+                    <label class="  form-check-label text-light" for="exampleRadios1">
+                       Yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio"   name="new_releases" value="0">
-                    <label class="form-check-label" for="exampleRadios2">
-                        no
+                    <input class="form-check-input text-light" type="radio"   name="new_releases" value="0">
+                    <label class=" form-check-label" for="exampleRadios2">
+                        No
                     </label>
                 </div>
 
+                
 
 
                 <div class="form-group">
