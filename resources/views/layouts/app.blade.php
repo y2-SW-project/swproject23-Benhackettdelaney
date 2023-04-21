@@ -33,10 +33,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('home') }}">{{ __('movies') }}</a>
+                            <a class="nav-link text-light" href="{{ route('home') }}">{{ __('Movies') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-light" href="{{ route('newreleases.index') }}">{{ __('newly released movies') }}</a>
+                            <a class="nav-link  text-light" href="{{ route('newreleases.index') }}">{{ __('Newly Released Movies') }}</a>
                         </li>
                     </ul>
 

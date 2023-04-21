@@ -5,7 +5,7 @@
 
 
 <div>
-    <div class="row justify-content-center bg-dark">
+    <div class="row justify-content-center ">
 
 
         <div class="col my-6 p-6 bg-dark ">
@@ -18,7 +18,9 @@
                                 <div class="col-12 col-md-8">
 
                                     <div class="md-5 me-2 mt-3 fs-3">
-                                        <button type="button" class="btn btn-light text-dark  me-5 ms-5 fs-3">Play Movie</button>
+                                        <button type="button" class="btn btn-light text-dark ms-5  fs-3">Play Movie</button>
+                                        <button type="button" class=" rounded-5 btn btn-dark text-light   ms-2 fs-3">Like</button>
+                                        <button type="button" class=" rounded-5 btn btn-dark text-light   ms-2 fs-3">Thumbs up</button>
                                     </div>
                                 </div>
                             </div>
@@ -47,8 +49,8 @@
 
                     </div>
                     <div  class = "my-5">
-                        <h2 >Description: </h2>
-                        <h3> {{$Movie-> description}}</h3>
+                        <h2 >Description:</h2>
+                        <h3>{{$Movie-> description}}</h3>
 
                     </div>
                 </div>
@@ -78,60 +80,53 @@
 </div>
 
 
-<div class=" container-fluid justify-content-center text-light pt-5 align-items-center bg-dark">
-    <div class="row col text-light">
-        <h2>More Like this</h2>
-        @forelse ($movies as $movie)
-        <div class="col-4">
-            <div class="col gy-5 my-6 p-6 bg-dark border-b ms-2 border-gray-200 d-flex align-items-center shadow-sm sm:rounded-lg">
-                <a href="{{ route('movies.show', $Movie) }}">
-                    <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="413" height="470">
-                </a>
-                <h1>{{$movie->name}}</h1>
-            </div>
-            </div>
-    @empty
-    @endforelse
-    </div>
-   
+<div class=" text-light">
+    <h2 class="ms-3 pt-5">More Like this</h2>
 </div>
 
-<div class="card text-center bg-dark">
-    <div class="card-header">
+<div class="d-flex justify-content-evenly text-light pt-5 me-5 align-items-center">
+    @forelse ($movies as $movie)
+
+    <a href="{{ route('movies.show', $movie) }}">
+        <img src="{{ asset('storage/images/' . $movie->image_id) }}" width="413" height="470" />
+    </a>
 
 
-    </div>
+    @empty
+    @endforelse
+</div>
 
-    <div class="card text-center bg-dark">
+<h5 class="card-title text-center text-danger mt-5 fs-1">Benflix</h5>
+<p class="text-light text-center mt-2">2023-2023 , Benflix.com,inc or its affiliates</p>
+<div class="card text-center bg-black">
 
-        <div class="card-body">
-            <h5 class="card-title text-center text-danger fs-1">Benflix</h5>
-            <div class="row">
-                <div class="col-2  my-2 me-5 ps-5 fs-5">
-                    <p class=<p><a class="link-opacity-10" href="#">Terms and Privacy Notice</a>
-                </div>
-                <div class="col-2 my-2 me-5 ps-5 fs-5">
-                    <p class=<p><a class="link-opacity-10" href="#">Send us feedback</a>
-                </div>
-                <div class="col-2 my-2 me-5 fs-5">
-                    <p class=<p><a class="link-opacity-10" href="#">Help</a>
-                </div>
-                <div class="col-2 my-2 me-5 fs-5">
-                    <p class=<p><a class="link-opacity-20" href="#">Cookies Notice</a>
-                </div>
-                <div class="col-2 my-2  fs-5">
-                    <p class=<p><a class="link-opacity-10" href="#">2023-2023 , Benflix.com,inc or its affiliates</a>
-                </div>
+    <div class="card-body">
+
+        <div class="d-flex fs-5 justify-content-evenly align-items-center">
+            <div class=" ">
+                <p class=<p><a class="link-opacity-10" href="#">Terms and Privacy Notice</a>
+            </div>
+            <div class=" ">
+                <p class=<p><a class="link-opacity-10" href="#">Send us feedback</a>
+            </div>
+            <div class="">
+                <p class=<p><a class="link-opacity-10" href="#">Help</a>
+            </div>
+            <div class="">
+                <p class=<p><a class="link-opacity-20" href="#">Cookies Notice</a>
             </div>
 
-            <!-- when EDIT BUTTON is clicked, route to admin.books.edit -->
-            <a href="{{ route('movies.edit', $Movie) }}" class="btn-link ml-auto">Edit</a>
+        </div>
 
-            <!-- delete button is wrapped in a form, with the delete method. -->
+
+        <section class="d-flex mt-5 justify-content-center ">
+            <a href="{{ route('movies.edit', $Movie) }}" class="btn btn-success ml-4">Edit</a>
+
             <form action="{{ route('movies.destroy', $Movie) }}" method="post">
                 @method('delete')
                 @csrf
-                <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete?')">Delete </button>
+                <button type="submit" class="btn btn-danger ms-5 ml-4" onclick="return confirm('Are you sure you want to delete?')">Delete </button>
+        </section>
         </div>
     </div>
 

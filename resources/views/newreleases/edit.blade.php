@@ -109,7 +109,6 @@
             <div class="card text-center bg-dark">
        
        <div class="card-body justify-content-center">
-       <img src="images/BenflixLogo.jpg" class="card-img" alt="...">
            <h5 class="card-title text-center text-danger fs-1">Benflix</h5>
            <div class="row">
                <div class="col-2  my-2 me-5 ps-5 fs-5">
