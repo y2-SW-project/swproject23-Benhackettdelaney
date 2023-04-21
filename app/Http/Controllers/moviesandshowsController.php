@@ -91,7 +91,7 @@ class MoviesAndShowsController extends Controller
     public function show(Movie $Movie )
     {
 
-        $Movie = Movie::where('new_releases', '0')->get(); 
+     #
 
         if (!Auth::id()) {
             return abort(403);
@@ -133,6 +133,7 @@ class MoviesAndShowsController extends Controller
             'rating' => 'required|max:5',
             'date' => 'required',
             'new_releases' => 'required',
+            'image_id' => 'file|image'
             
         ]);
 

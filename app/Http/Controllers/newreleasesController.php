@@ -53,6 +53,7 @@ class newreleasesController extends Controller
             'rating' =>'required|max:5',
             'date' =>'required',
             'new_releases'=>'required',
+            
           
             
         ]);

@@ -63,32 +63,38 @@ $array2 = array(
 
 
 
-        <div class="card text-center bg-dark">
+  
+    <div class="card text-center bg-dark">
+            <div class="card-header">
+
+
+            </div>
+    
+            <div class="card text-center bg-dark">
        
-            <div class="card-body">
-                <h5 class="card-title text-danger fs-1">Benflix</h5>
-                <div class="row">
-                    <div class="col-2  my-2 me-5 ps-5 fs-5">
-                        <p class=<p><a class="link-opacity-10" href="#">Terms and Privacy Notice</a>
-                    </div>
-                    <div class="col-2 my-2 me-5 ps-5 fs-5">
-                        <p class=<p><a class="link-opacity-10" href="#">Send us feedback</a>
-                    </div>
-                    <div class="col-2 my-2 me-5 fs-5">
-                        <p class=<p><a class="link-opacity-10" href="#">Help</a>
-                    </div>
-                    <div class="col-2 my-2 me-5 fs-5">
-                        <p class=<p><a class="link-opacity-20" href="#">Cookies Notice</a>
-                    </div>
-                    <div class="col-2 my-2  fs-5">
-                        <p class=<p><a class="link-opacity-10" href="#">2023-2023 , Benflix.com,inc or its affiliates</a>
-                    </div>
-                </div>
+       <div class="card-body pt-5">
+           <h5 class="card-title text-center text-danger fs-1">Benflix</h5>
+           <div class="row">
+               <div class="col-2  my-2 me-5 ps-5 fs-5">
+                   <p class=<p><a class="link-opacity-10" href="#">Terms and Privacy Notice</a>
+               </div>
+               <div class="col-2 my-2 me-5 ps-5 fs-5">
+                   <p class=<p><a class="link-opacity-10" href="#">Send us feedback</a>
+               </div>
+               <div class="col-2 my-2 me-5 fs-5">
+                   <p class=<p><a class="link-opacity-10" href="#">Help</a>
+               </div>
+               <div class="col-2 my-2 me-5 fs-5">
+                   <p class=<p><a class="link-opacity-20" href="#">Cookies Notice</a>
+               </div>
+               <div class="col-2 my-2  fs-5">
+                   <p class=<p><a class="link-opacity-10" href="#">2023-2023 , Benflix.com,inc or its affiliates</a>
+               </div>
+           </div>
 
 
 
 
-                <a href="{{ route('newreleases.create') }}" class="btn btn-primary">Create</a>
             </div>
 
 

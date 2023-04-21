@@ -28,6 +28,7 @@ Route::get('/movies/create', [App\Http\Controllers\MoviesAndShowsController::cla
 Route::get('/movies/{movie}', [App\Http\Controllers\MoviesAndShowsController::class, 'show'])->name('movies.show');
 Route::get('/movies/{movie}/edit', [App\Http\Controllers\MoviesAndShowsController::class, 'edit'])->name('movies.edit');
 Route::post('/movies', [App\Http\Controllers\MoviesAndShowsController::class, 'store'])->name('movies.store');
+
 Route::delete('/movies/{movie}', [App\Http\Controllers\MoviesAndShowsController::class, 'destroy'])->name('movies.destroy');
 
 Route::get('/newreleases', [App\Http\Controllers\newreleasesController::class, 'index'])->name('newreleases.index');
