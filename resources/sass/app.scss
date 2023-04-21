@@ -1,8 +1,18 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&display=swap');
+
+$font-family-base: 'Nova Square', cursive;
+$d-secondary-ff: 'Nova Flat', cursive;
+.display-second{
+    font-family:$d-secondary-ff;
+}
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+body{
+    background-color:black;
+}

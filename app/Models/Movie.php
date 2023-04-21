@@ -10,8 +10,5 @@ class Movie extends Model
     use HasFactory;
     protected $fillable = ['age_group', 'title','description', 'duration', 'rating', 'date','new_releases','image_id','updated_at', 'created_at'];
     
-    public function mvoies()
-    {
-        return $this->belongsTo(Movie::class);
-    }
+   
 }

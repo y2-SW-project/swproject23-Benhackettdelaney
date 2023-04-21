@@ -85,17 +85,17 @@ class newreleasesController extends Controller
      * @param  \App\Models\Movie  
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movie $movie)
     {
-        $movies = Movie::where('new_releases', '1')->get(); 
-        $movie = Movie::findOrFail($id);
+        // $movies = Movie::where('new_releases', '1')->get(); 
+        // $movie = Movie::findOrFail($movie);
 
-        if(!Auth::id()) {
-           return abort(403);
-         }
-        //  dd();
-        return view('newreleases.show')->with('movie', $movie);
-        return view('newreleases.show')->with('movie', $movies);
+        // if(!Auth::id()) {
+        //    return abort(403);
+        //  }
+        $movies = Movie::paginate(3);
+        return view('newreleases.show')->with('movie', $movie)->with('movies', $movies);
+     
     }
 
     /**

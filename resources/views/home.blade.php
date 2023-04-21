@@ -18,10 +18,10 @@ $array2 = array(
 );
 ?>
 <div>
-    <div class="row justify-content-center bg-dark">
+    <div class="row justify-content-center">
 
 
-        <div class="col my-6 p-6 bg-dark ">
+        <div class="col my-6 p-6  ">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner b">
                     <div>
@@ -38,14 +38,14 @@ $array2 = array(
 
     <div>
 
-        <div class="row justify-content-center bg-dark">
+        <div class="row justify-content-center isplay-second">
             @forelse ($array as $title)
             <div class="text-light ps-3 fs-4 pt-5">
                 {{ $title }}
             </div>
             @forelse ($movies->take(5) as $Movie)
 
-            <div class="col gy-5 my-6 p-6 bg-dark border-b ms-2 border-gray-200 shadow-sm sm:rounded-lg">
+            <div class="col gy-5 my-6 p-6  border-b ms-2 border-gray-200 shadow-sm sm:rounded-lg">
                 <a href="{{ route('movies.show', $Movie) }}">
                     <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="350" height="194">
                 </a>
@@ -60,7 +60,7 @@ $array2 = array(
 
     </div>
 
-    <div class="row justify-content-center bg-dark ">
+    <div class="row justify-content-center  ">
         @forelse ($array2 as $title)
         <div class="text-light ps-3 fs-4 pt-5">
             {{ $title }}
@@ -68,7 +68,7 @@ $array2 = array(
 
         @forelse ($movies->take(4) as $Movie)
 
-        <div class="col gy-5 my-6 p-6 bg-dark border-b border-gray-200 shadow-sm sm:rounded-lg ms-5">
+        <div class="col gy-5 my-6 p-6  border-b border-gray-200 shadow-sm sm:rounded-lg ms-5">
             <a href="{{ route('movies.show', $Movie) }}">
                 <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="867" height="548">
             </a>
@@ -80,13 +80,13 @@ $array2 = array(
 
 
     </div>
-    <div class="card text-center bg-dark">
+    <div class="card text-center bg-black">
             <div class="card-header">
 
 
             </div>
     
-            <div class="card text-center bg-dark">
+            <div class="card text-center bg-black">
        
        <div class="card-body pt-5">
            <h5 class="card-title text-center text-danger fs-1">Benflix</h5>

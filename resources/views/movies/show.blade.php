@@ -18,7 +18,7 @@
                                 <div class="col-12 col-md-8">
 
                                     <div class="md-5 me-2 mt-3 fs-3">
-                                        <button type="button" class="btn btn-light text-dark  me-5 ms-5 fs-3">Buy Movie</button>
+                                        <button type="button" class="btn btn-light text-dark  me-5 ms-5 fs-3">Play Movie</button>
                                     </div>
                                 </div>
                             </div>
@@ -28,28 +28,27 @@
             </div>
         </div>
 
-        <section class="container border border-primary text-light">
+        <section class="container-fluid text-light">
         <div>
                         <h2 class="my-3 ms-3">Rating: {{ $Movie-> rating }}</h2>
-                        <!-- <p>{{ $Movie-> date }}</p> -->
 
                     </div>
             <div class="row">
-                <div class="col-6 border mt-5 ms-3">
+                <div class="col-6  mt-5 ms-3">
                
                     <div>
-                        <h2 class="my-4">Release Date: {{ $Movie-> date }}</h2>
-                        <!-- <p>{{ $Movie-> date }}</p> -->
+                        <h2 class="my-4">Release Date:</h2>
+                        <h3>{{ $Movie-> date }}</h3>
 
                     </div>
                     <div>
-                        <h2 class = "my-5">Duration: {{$Movie-> duration}} minutes</h2>
-                        <!-- <p > {{$Movie-> duration}} minutes</p> -->
+                        <h2 class="my-5">Duration:</h2>
+                        <h3> {{$Movie-> duration}} minutes</h3>
 
                     </div>
-                    <div>
-                        <h2 class = "my-5">Description: {{$Movie-> description}} </h2>
-                        <!-- <p> {{$Movie-> description}}</p> -->
+                    <div  class = "my-5">
+                        <h2 >Description: </h2>
+                        <h3> {{$Movie-> description}}</h3>
 
                     </div>
                 </div>
@@ -60,11 +59,11 @@
                         <!-- <p> {{ $Movie-> title }}</p> -->
                     </div>
                     <div class="d-flex align-items-center  ">
-                        <h3 class="my-3">Genre: {{ $Movie-> title }}</h3>
+                        <h3 class="my-4">Genre: {{ $Movie-> title }}</h3>
                         <!-- <p> {{ $Movie-> title }}</p> -->
                     </div>
                     <div class="d-flex align-items-center  ">
-                        <h3 class="my-3">This film is: {{ $Movie-> title }} </h3>
+                        <h3 class="my-4">This film is: {{ $Movie-> title }} </h3>
                         <!-- <p class = ""> {{ $Movie-> title }}</p> -->
                     </div>
 
@@ -78,20 +77,23 @@
     </div>
 </div>
 
-<div class=" text-light">
-    <div class="row  text-light">
-        <p>More Like this</p>
-        @forelse ($Movie->take(3) as $Movie)
-        <div class="col-2">
-            <div class="col gy-5 my-6 p-6 bg-dark border-b ms-2 border-gray-200 shadow-sm sm:rounded-lg">
+
+<div class=" container-fluid justify-content-center text-light pt-5 align-items-center bg-dark">
+    <div class="row col text-light">
+        <h2>More Like this</h2>
+        @forelse ($movies as $movie)
+        <div class="col-4">
+            <div class="col gy-5 my-6 p-6 bg-dark border-b ms-2 border-gray-200 d-flex align-items-center shadow-sm sm:rounded-lg">
                 <a href="{{ route('movies.show', $Movie) }}">
-                    <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="350" height="194">
+                    <img src="{{ asset('storage/images/' . $Movie->image_id) }}" width="413" height="470">
                 </a>
+                <h1>{{$movie->name}}</h1>
             </div>
-        </div>
-    </div>
+            </div>
     @empty
     @endforelse
+    </div>
+   
 </div>
 
 <div class="card text-center bg-dark">

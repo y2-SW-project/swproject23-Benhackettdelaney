@@ -96,8 +96,8 @@ class MoviesAndShowsController extends Controller
         if (!Auth::id()) {
             return abort(403);
         }
-
-        return view('movies.show')->with('Movie', $Movie);
+        $movies = Movie::paginate(3);
+        return view('movies.show')->with('Movie', $Movie)->with('movies',$movies);
     }
 
     /**

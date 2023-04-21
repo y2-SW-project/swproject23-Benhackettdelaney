@@ -20,7 +20,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark border-sm shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-danger" href="{{ url('/') }}">
                     {{ config('app.name', 'Benflix') }}
