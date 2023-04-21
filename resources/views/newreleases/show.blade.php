@@ -16,7 +16,7 @@
                                 <div class="col-12 col-md-8">
 
                                     <div class="md-5 me-2 mt-3 fs-3">
-                                        <button type="button" class="btn btn-light text-dark ms-5  fs-3">Play Movie</button>
+                                        <button type="button" class="btn btn-light text-dark ms-5  fs-3">Buy Movie</button>
                                         <button type="button" class=" rounded-5 btn btn-dark text-light   ms-2 fs-3">Like</button>
                                         <button type="button" class=" rounded-5 btn btn-dark text-light   ms-2 fs-3">Thumbs up</button>
                                     </div>
